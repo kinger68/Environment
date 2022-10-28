@@ -1,0 +1,46 @@
+:set number									" Show line numbers
+:set relativenumber							" show line numbers starting from current line
+:set clipboard=unnamedplus					" Allow clipboard copy/paste between other apps
+:set completeopt=noinsert,menuone,noselect	" Make code completion like an IDE
+:set wildmenu								" Shows a more advanceds menu for auto-completion
+:set hidden									" Hide unused buffers
+:set splitbelow splitright					" Split screen below and right (:split, :vsplit)
+:set autoindent
+:set tabstop=4
+:set shiftwidth=4
+:set smarttab
+:set softtabstop=4
+:set mouse=a
+" :set cursorline			" Highlight the current line with and underline, not sure if I like it.
+
+call plug#begin()
+
+Plug 'https://github.com/tpope/vim-surround'			" Surroundinging ysw)
+Plug 'https://github.com/preservim/nerdtree'			" NerdTree directory viewer
+Plug 'https://github.com/vim-airline/vim-airline'		" Status Bar
+Plug 'https://github.com/tpope/vim-commentary'			" For commenting gcc & gc
+Plug 'https://github.com/ap/vim-css-color'				" CSS Color Preview
+Plug 'https://github.com/preservim/tagbar'				" Tagbar for code navigation
+Plug 'https://github.com/godlygeek/tabular'				" Tabular
+Plug 'https://github.com/rafi/awesome-vim-colorschemes'	" Retro Color Schemes
+
+" JavaScript
+Plug 'https://github.com/pangloss/vim-javascript'		" Javascript Syntax
+Plug 'https://github.com/leafgarland/typescript-vim'	" Javascript Syntax
+Plug 'https://github.com/MaxMEllon/vim-jsx-pretty'		" React syntax highlighting and indenting
+
+call plug#end()
+
+nnoremap <C-f> :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+
+nmap <F8> :TagbarToggle<CR>
+
+autocmd VimEnter * NERDTree | wincmd p
+
+:colorscheme jellybeans
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
